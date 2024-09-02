@@ -1,6 +1,4 @@
-# React + Vite 
-    and
-# React Thunk 
+# React + Vite + Redux + Thunk 
 - redux
 - react-redux
 - react-thunk
