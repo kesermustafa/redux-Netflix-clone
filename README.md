@@ -6,3 +6,6 @@
 - react-icon
 - react-router-dom
 - slider-slide
+
+# API
+-https://www.themoviedb.org/
