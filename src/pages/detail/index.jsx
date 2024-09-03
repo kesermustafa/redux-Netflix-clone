@@ -4,14 +4,11 @@ import {api} from "../../util/api.js";
 import Error from "../../components/error/Error.jsx";
 import Loading from "../../components/loading/Loading.jsx";
 import Banner from "./Banner.jsx";
+import Content from "./Content.jsx";
 
 const Detail = () => {
 
-
     const {id} = useParams()
-
-    console.log(id)
-
 
     const [movie, setMovie] = useState(null)
     const [error, setError] = useState(null)
@@ -28,9 +25,6 @@ const Detail = () => {
             .catch(err => setError(err))
     },[])
 
-    console.log(movie)
-
-
     if (error) return <Error info={error} />;
     if (!movie) return <Loading />;
 
@@ -38,7 +32,7 @@ const Detail = () => {
         <div>
             <Banner movie={movie} />
 
-
+            <Content movie={movie} />
 
         </div>
     );

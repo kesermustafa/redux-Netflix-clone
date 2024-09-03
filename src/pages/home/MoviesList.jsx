@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {api} from "../../util/api.js";
-import { Splide, SplideSlide } from '@splidejs/react-splide';
+import {Splide, SplideSlide} from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import {baseImageUrl} from "../../util/constans/constan.js";
 import {Link} from "react-router-dom";
+import Error from "../../components/error/Error.jsx";
+import Loading from "../../components/loading/Loading.jsx";
 
 const MoviesList = ({genre}) => {
 
@@ -21,6 +23,10 @@ const MoviesList = ({genre}) => {
         }).catch(err => setError(err));
     }, []);
 
+
+    if (error) return <Error info={error}/>;
+    if (!movies) return <Loading/>;
+
     return (
         <div className='my-10'>
             <h1 className="text-2xl">{genre.name}</h1>
@@ -28,22 +34,21 @@ const MoviesList = ({genre}) => {
             <Splide options={{
                 autoWidth: true,
                 pagination: false,
-                gap:"20px",
-                type : "loop",
+                gap: "20px",
+                type: "loop",
                 autoplay: true,
                 infinite: true,
                 rewind: true,
-                interval:2000
+                interval: 2000
             }}>
-                {movies?.map((movie, key) => (
-                    <SplideSlide key={key} >
+                {movies.map((movie, key) => (
+                    <SplideSlide key={key}>
                         <Link to={`/movie/${movie.id}`}>
-
-                        <img className="max-w-[300px] hover:scale-105 h-full rounded-md cursor-pointer" src={baseImageUrl + movie.poster_path} alt={movie.title} />
+                            <img className="max-w-[300px] hover:scale-105 h-full rounded-md cursor-pointer"
+                                 src={baseImageUrl + movie.poster_path} alt={movie.title}/>
                         </Link>
-
                     </SplideSlide>
-                    ))}
+                ))}
             </Splide>
         </div>
     );
