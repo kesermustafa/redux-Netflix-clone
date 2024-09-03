@@ -9,7 +9,6 @@ const Hero = () => {
     const [movie, setMovie] = useState(null);
     const [error, setError] = useState(null);
 
-    console.log(movie)
     useEffect(() => {
 
         api.get('/movie/popular')
