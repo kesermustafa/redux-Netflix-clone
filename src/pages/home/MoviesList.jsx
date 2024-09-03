@@ -3,6 +3,7 @@ import {api} from "../../util/api.js";
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import {baseImageUrl} from "../../util/constans/constan.js";
+import {Link} from "react-router-dom";
 
 const MoviesList = ({genre}) => {
 
@@ -20,8 +21,6 @@ const MoviesList = ({genre}) => {
         }).catch(err => setError(err));
     }, []);
 
-    console.log(movies)
-
     return (
         <div className='my-10'>
             <h1 className="text-2xl">{genre.name}</h1>
@@ -29,11 +28,20 @@ const MoviesList = ({genre}) => {
             <Splide options={{
                 autoWidth: true,
                 pagination: false,
-                gap:15,
+                gap:"20px",
+                type : "loop",
+                autoplay: true,
+                infinite: true,
+                rewind: true,
+                interval:2000
             }}>
                 {movies?.map((movie, key) => (
                     <SplideSlide key={key} >
-                        <img className="max-w-[300px] rounded-md cursor-pointer" src={baseImageUrl + movie.poster_path} alt={movie.title} />
+                        <Link to={`/movie/${movie.id}`}>
+
+                        <img className="max-w-[300px] hover:scale-105 h-full rounded-md cursor-pointer" src={baseImageUrl + movie.poster_path} alt={movie.title} />
+                        </Link>
+
                     </SplideSlide>
                     ))}
             </Splide>
