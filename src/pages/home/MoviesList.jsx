@@ -29,7 +29,7 @@ const MoviesList = ({genre}) => {
 
     return (
         <div className='my-10'>
-            <h1 className="text-2xl">{genre.name}</h1>
+            <h1 className="text-2xl mb-3 font-semibold">{genre.name}</h1>
 
             <Splide options={{
                 autoWidth: true,
@@ -39,11 +39,11 @@ const MoviesList = ({genre}) => {
                 autoplay: true,
                 infinite: true,
                 rewind: true,
-                interval: 2000
+                interval: 2500
             }}>
                 {movies.map((movie, key) => (
                     <SplideSlide key={key}>
-                        <Link to={`/movie/${movie.id}`}>
+                        <Link className='overflow-hidden'  to={`/movie/${movie.id}`}>
                             <img className="max-w-[300px] hover:scale-105 h-full rounded-md cursor-pointer"
                                  src={baseImageUrl + movie.poster_path} alt={movie.title}/>
                         </Link>

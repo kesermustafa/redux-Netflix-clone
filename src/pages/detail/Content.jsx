@@ -12,7 +12,9 @@ const Content = ({movie}) => {
                 <DetailInfo title="Yapimci Ulkeler" arr={movie?.production_countries}  />
             </div>
 
-            <div >2</div>
+            <div >
+                <p>{movie.overview}</p>
+            </div>
         </div>
     );
 };
