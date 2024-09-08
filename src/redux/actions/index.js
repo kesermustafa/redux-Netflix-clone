@@ -10,13 +10,25 @@ export const getGenres = () => (dispatch) => {
 }
 
 
-export const addToFavorite = () => (dispatch) => {
+export const getFavorites = () => (dispatch) => {
+    dispatch({type: ActionTypes.FAV_LOADING})
+    api.get(`/account/21296481/favorite/movies`)
+        .then((res) => dispatch({type: ActionTypes.FAV_SUCCESS, payload: res.data.results}))
+        .catch((err) => dispatch({type: ActionTypes.FAV_ERROR, payload: err.message}))
+}
 
+
+//  Fvorilere ekle - cikar
+export const toggleFavorite = (movie, isAdd) => (dispatch) => {
     api.post(`/account/21296481/favorite`, {
         media_type: "movie",
-        media_id: 533535,
-        favorite: true,
-    } )
-        .then((res) => console.log(res.data))
-        .catch((err) => console.log(err))
+        media_id: movie.id,
+        favorite: isAdd,
+    })
+        .then(() => {
+            isAdd ?
+                dispatch({type: ActionTypes.ADD_TO_FAVORITE, payload: movie}) :
+                dispatch({type: ActionTypes.REMOVE_FAVORITE, payload: movie})
+        })
+        .catch((err) => dispatch({type: ActionTypes.FAV_ERROR, payload: err}))
 }

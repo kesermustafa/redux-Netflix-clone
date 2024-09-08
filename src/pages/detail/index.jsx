@@ -34,7 +34,7 @@ const Detail = () => {
     return (
         <div className='mt-5'>
 
-            <Button/>
+            <Button movie={movie}/>
 
             <Banner movie={movie} />
 

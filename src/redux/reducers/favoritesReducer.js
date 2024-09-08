@@ -9,20 +9,20 @@ const initialState = {
 const favoritesReducers = (state = initialState, action) => {
     switch (action.type) {
 
-        case "X":
+        case ActionTypes.FAV_LOADING:
             return {...state, isLoading: true};
 
-        case "Y":
-            return {...state, isLoading: false, genre: action.payload, error: null};
-
-        case "Z":
+        case ActionTypes.FAV_ERROR:
             return {...state, isLoading: false, error: action.payload};
 
-        case "A":
-            return {...state, isLoading: false, error: action.payload};
+        case ActionTypes.FAV_SUCCESS:
+            return {...state, isLoading: false, error: null, favorites: action.payload};
 
-        case "B":
-            return {...state, isLoading: false, error: action.payload};
+        case ActionTypes.ADD_TO_FAVORITE:
+            return {...state, favorites: state.favorites.concat(action.payload)};
+
+        case ActionTypes.REMOVE_FAVORITE:
+            return {...state, favorites: state.favorites.filter(favorite => favorite.id !== action.payload.id)};
 
         default:
             return state

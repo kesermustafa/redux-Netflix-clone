@@ -5,16 +5,16 @@ import Favourites from "./pages/favourites/index.jsx";
 import Header from "./components/header/index.jsx";
 import Detail from "./pages/detail/index.jsx";
 import {useDispatch} from "react-redux";
-import {getGenres} from "./redux/actions/index.js";
+import {getFavorites, getGenres} from "./redux/actions/index.js";
 
 const App = () => {
 
-  const dispatch =  useDispatch()
+    const dispatch = useDispatch()
 
-    useEffect(() =>{
-       dispatch(getGenres())
-    },[])
-
+    useEffect(() => {
+        dispatch(getGenres())
+        dispatch(getFavorites())
+    }, [])
 
 
     return (
