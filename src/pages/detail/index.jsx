@@ -7,6 +7,7 @@ import Banner from "./Banner.jsx";
 import Content from "./Content.jsx";
 import ActorList from "./ActorList.jsx";
 import VideoList from "./VideoList.jsx";
+import Button from "./Button.jsx";
 
 const Detail = () => {
 
@@ -31,7 +32,10 @@ const Detail = () => {
     if (!movie) return <Loading />;
 
     return (
-        <div>
+        <div className='mt-5'>
+
+            <Button/>
+
             <Banner movie={movie} />
 
             <Content movie={movie} />
