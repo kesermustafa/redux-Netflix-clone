@@ -9,7 +9,6 @@ const Button = ({movie}) => {
 
     const {favorites} = useSelector((store) => store.favorites);
     const dispatch = useDispatch()
-    const navigate = useNavigate();
 
     const isFav = favorites.some((item)=>item.id === movie.id)
 
@@ -18,11 +17,8 @@ const Button = ({movie}) => {
     }
 
     return (
-        <div className='mb-5 flex justify-between '>
-            <button onClick={()=> navigate(-1)} className='bg-gray-600 flex items-center  gap-1 py-1 px-3 pe-4 rounded hover:bg-gray-500 transition'>
-               <IoChevronBack className='text-xl'/> Geri
-            </button>
-            <button onClick={handleClick} className={`${isFav ? "bg-amber-600" : "bg-blue-600"  }  flex items-center  gap-1 py-1 px-3 rounded hover:bg-blue-500 transition`}>
+
+            <button onClick={handleClick} className={`${isFav ? "bg-amber-600 hover:bg-amber-500" : "bg-blue-600 hover:bg-blue-500"  }  flex items-center  gap-1 py-1 px-3 rounded  transition`}>
                 {
                     isFav ?
                         <> <MdBookmarkRemove className='text-xl'/> Izleme Listesinden Cikar </>
@@ -30,7 +26,7 @@ const Button = ({movie}) => {
                         <> <MdBookmarkAdd className='text-xl'/> Izleme Listesine Ekle </>
                 }
             </button>
-        </div>
+
     );
 };
 

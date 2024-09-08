@@ -1,5 +1,5 @@
-import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useNavigate, useParams} from "react-router-dom";
+import React, {useEffect, useState} from "react";
 import {api} from "../../util/api.js";
 import Error from "../../components/error/Error.jsx";
 import Loading from "../../components/loading/Loading.jsx";
@@ -8,9 +8,11 @@ import Content from "./Content.jsx";
 import ActorList from "./ActorList.jsx";
 import VideoList from "./VideoList.jsx";
 import Button from "./Button.jsx";
+import {IoChevronBack} from "react-icons/io5";
 
 const Detail = () => {
 
+    const navigate = useNavigate()
     const {id} = useParams()
 
     const [movie, setMovie] = useState(null)
@@ -34,13 +36,21 @@ const Detail = () => {
     return (
         <div className='mt-5'>
 
-            <Button movie={movie}/>
+            <div className='mb-5 flex justify-between'>
+                <button onClick={() => navigate(-1)}
+                        className='bg-gray-600 flex items-center  gap-1 py-1 px-3 pe-4 rounded hover:bg-gray-500 transition'>
+                    <IoChevronBack className='text-xl'/> Geri
+                </button>
 
-            <Banner movie={movie} />
+                <Button movie={movie}/>
+            </div>
 
-            <Content movie={movie} />
 
-            <ActorList actors={movie.credits.cast} />
+            <Banner movie={movie}/>
+
+            <Content movie={movie}/>
+
+            <ActorList actors={movie.credits.cast}/>
 
             <VideoList videos={movie.videos.results}/>
 

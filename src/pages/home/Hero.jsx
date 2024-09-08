@@ -3,6 +3,8 @@ import {api} from "../../util/api.js";
 import Loading from "../../components/loading/Loading.jsx";
 import Error from "../../components/error/Error.jsx";
 import {baseImageUrl} from "../../util/constans/constan.js";
+import Button from "../detail/Button.jsx";
+import {Link} from "react-router-dom";
 
 const Hero = () => {
 
@@ -38,8 +40,9 @@ const Hero = () => {
                 </p>
 
                 <div className='flex gap-5'>
-                    <button  className='bg-blue-600 hover:bg-blue-700 transition cursor-pointer w-[120px] py-2 px-3 rounded-sm'>Filmi Izle</button>
-                    <button className='bg-red-600 hover:bg-red-700 transition cursor-pointer w-[120px] py-2 px-3 rounded-sm'>Listeye Ekle</button>
+                    <Link to={`/movie/${movie.id}`} className='bg-red-600 hover:bg-red-700 transition cursor-pointer w-[120px] text-center py-2 px-3 rounded'>Filmi Izle</Link>
+                   <Button movie={movie}/>
+
                 </div>
             </div>
 
