@@ -5,6 +5,8 @@ import Error from "../../components/error/Error.jsx";
 import Loading from "../../components/loading/Loading.jsx";
 import Banner from "./Banner.jsx";
 import Content from "./Content.jsx";
+import ActorList from "./ActorList.jsx";
+import VideoList from "./VideoList.jsx";
 
 const Detail = () => {
 
@@ -33,6 +35,10 @@ const Detail = () => {
             <Banner movie={movie} />
 
             <Content movie={movie} />
+
+            <ActorList actors={movie.credits.cast} />
+
+            <VideoList videos={movie.videos.results}/>
 
         </div>
     );

@@ -6,6 +6,8 @@ import {baseImageUrl} from "../../util/constans/constan.js";
 import {Link} from "react-router-dom";
 import Error from "../../components/error/Error.jsx";
 import Loading from "../../components/loading/Loading.jsx";
+import "../../index.css"
+import RatingCircle from "../../components/RatingCircle/RatingCircle.jsx";
 
 const MoviesList = ({genre}) => {
 
@@ -41,14 +43,25 @@ const MoviesList = ({genre}) => {
                 rewind: true,
                 interval: 2500
             }}>
-                {movies.map((movie, key) => (
-                    <SplideSlide key={key}>
-                        <Link className='overflow-hidden'  to={`/movie/${movie.id}`}>
-                            <img className="max-w-[300px] hover:scale-105 h-full rounded-md cursor-pointer"
-                                 src={baseImageUrl + movie.poster_path} alt={movie.title}/>
-                        </Link>
-                    </SplideSlide>
-                ))}
+                {movies.map((movie, index) =>  (
+
+                        <SplideSlide key={index} >
+                            <div className='relative h-full'>
+                                <Link className='overflow-hidden' to={`/movie/${movie.id}`}>
+                                    <img className="max-w-[300px] hover:scale-105 h-full rounded-md cursor-pointer"
+                                         src={baseImageUrl + movie.poster_path} alt={movie.title}/>
+                                </Link>
+
+                                {
+                                    movie.vote_average > 0 && <div className='absolute bottom-2 right-2'>
+                                        <RatingCircle rating={movie.vote_average.toFixed(1)}/>
+                                    </div>
+                                }
+                            </div>
+
+                        </SplideSlide>
+                    )
+                )}
             </Splide>
         </div>
     );
